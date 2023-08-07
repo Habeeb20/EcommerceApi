@@ -7,6 +7,8 @@ const authRouter = require("./routes/auth")
 const productRouter = require("./routes/product")
 const cartRouter = require("./routes/cart")
 const orderRouter = require(".routes/order")
+const cors = require("cors")
+const stripeRoute = require(".route/stripe")
 
 dotenv.config();
 
@@ -16,12 +18,13 @@ mongoose
     .catch((err) => { 
         console.log(err);
 });
-
+app.use(cors())
 app.use('/api/user', userRouter)
 app.use('api/auth', authRouter)
 app.use('api/product', productRouter)
 app.use('api/carts', cartRouter)
 app.use('api/orders', orderRouter)
+app.use('api/checkout', stripeRoute)
 app.use(express.json())
 
 
