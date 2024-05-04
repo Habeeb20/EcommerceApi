@@ -9,7 +9,7 @@ router.post("/", verifyToken, async (req, res) => {
 
     try {
         const savedOrder = await newOrder.save();
-        res.status(200).json(savedCart)
+        res.status(200).json(savedOrder)
     } catch (error) {
         res.status(500).json(error)
         
@@ -46,7 +46,7 @@ router.get("/find/:userId",verifyTokenAndAuthorization, async (req, res) => {
     try {
         const orders = await Order.find({userId: req.params.userId})
 
-        res.status(200).json(order)
+        res.status(200).json(orders)
 
     } catch (error) {
         res.status(500).json(error)
@@ -96,4 +96,4 @@ router.get("income", verifyTokenAndAdmin, async (req, res) => {
     }
 })
     
- module.exports= router
+ module.exports= router;
